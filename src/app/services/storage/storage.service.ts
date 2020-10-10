@@ -1,36 +1,40 @@
-import { Injectable } from '@angular/core';
-import { Plugins } from '@capacitor/core';
+import {Injectable} from '@angular/core';
+import {Plugins} from '@capacitor/core';
+import {ExpenseInterface} from '../../interfaces/expenseInterface';
+import {DatetimeService} from '../datetime/datetime.service';
+import {DataService} from '../data/data.service';
 
-const { Storage } = Plugins;
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class StorageService {
 
-  constructor() { }
+    constructor(
+        private dataService: DataService
+    ) {}
+
+    async saveToLocalStorage(key: string, value: any): Promise<void> {
+        return await Plugins.Storage.set({
+            key,
+            value: JSON.stringify(value)
+        });
+    }
+
+    async getFromLocalStorage(key: string): Promise<any> {
+        const ret = await Plugins.Storage.get({key});
+        return JSON.parse(ret.value);
+    }
 
 
-  // JSON "set" example
-async saveToLocalStorage(key:string,value:any) {
-  await Storage.set({
-    key,
-    value: JSON.stringify(value)
-  });
+    async removeFromLocalStorage(key: string): Promise<void> {
+        return await Plugins.Storage.remove({key});
+    }
+
+    async clearLocalStorage(isReset?: boolean): Promise<void> {
+        if (isReset) {
+            this.dataService.setExpenses([]);
+        }
+        return await Plugins.Storage.clear();
+    }
 }
-
-// JSON "get" example
-async getFromLocalStorage(key:string):Promise<any> {
-  const ret = await Storage.get({ key});
-  return  JSON.parse(ret.value);
-}
-
-async removeFromLocalStorage(key:string):Promise<void>{
-  return await Storage.remove({key});
-}
-
-async clearLocalStorage(){
-  await Storage.clear();
-}
-}
-
