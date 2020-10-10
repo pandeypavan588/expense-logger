@@ -1,16 +1,55 @@
 import { TestBed } from '@angular/core/testing';
 
 import { StorageService } from '../storage/storage.service';
+let storageService: StorageService;
 
 describe('StorageService', () => {
-  let service: StorageService;
+  
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(StorageService);
+    TestBed.configureTestingModule({
+      providers: [StorageService]
+    });
+    storageService = TestBed.inject(StorageService);
   });
 
-  it('should be created', () => {
+  it('Storage Service should be created', () => {
+    const service: StorageService = TestBed.get(StorageService);
     expect(service).toBeTruthy();
+});
+
+it('saveToLocalStorage() |getFromLocalStorage() | Test Cases', (doneFn) => {
+  const object = {test: 'Changed Value'}
+  storageService.saveToLocalStorage('test', object);
+  storageService.getFromLocalStorage('test').then((val) => {
+      expect(val).toEqual(object);
+      doneFn();
   });
+});
+
+
+it('removeFromLocalStorage() | Should remove Key from Local Storage', (doneFn) => {
+  const object = {test: 'Test'};
+  storageService.saveToLocalStorage('test', object);
+  storageService.getFromLocalStorage('test').then((val) => {
+      console.log('stored in Local', val);
+  });
+  storageService.removeFromLocalStorage('test').then((val) => {
+      expect(val).toBe(undefined);
+      doneFn();
+  });
+});
+
+it('clearLocalStorage() | Should Clear Everything from Local Storage', (doneFn) => {
+  const object = {test: 'Test'};
+  storageService.saveToLocalStorage('test', object);
+  storageService.getFromLocalStorage('test').then((val) => {
+      console.log('stored in Local', val);
+  });
+  storageService.clearLocalStorage().then((val) => {
+      expect(val).toBe(undefined);
+      doneFn();
+  });
+});
+
 });

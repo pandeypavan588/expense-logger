@@ -12,7 +12,7 @@ export class StorageService {
 
 
   // JSON "set" example
-async setObject(key:string,value:any) {
+async saveToLocalStorage(key:string,value:any) {
   await Storage.set({
     key,
     value: JSON.stringify(value)
@@ -20,16 +20,16 @@ async setObject(key:string,value:any) {
 }
 
 // JSON "get" example
-async getObject(key:string):Promise<{value:any}> {
+async getFromLocalStorage(key:string):Promise<any> {
   const ret = await Storage.get({ key});
   return  JSON.parse(ret.value);
 }
 
-async removeItem(key:string){
-  await Storage.remove({key});
+async removeFromLocalStorage(key:string):Promise<void>{
+  return await Storage.remove({key});
 }
 
-async clear(){
+async clearLocalStorage(){
   await Storage.clear();
 }
 }
