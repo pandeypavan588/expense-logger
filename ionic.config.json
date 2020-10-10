@@ -1,5 +1,7 @@
 {
   "name": "expenselogger",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
