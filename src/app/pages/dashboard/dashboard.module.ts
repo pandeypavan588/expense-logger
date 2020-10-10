@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     RouterModule.forChild([{path: '',component: DashboardComponent}]),
     IonicModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

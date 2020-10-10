@@ -1,7 +1,8 @@
 {
   "name": "expenselogger",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
