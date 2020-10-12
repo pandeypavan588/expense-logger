@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Plugins} from '@capacitor/core';
 import {ExpenseInterface} from '../../interfaces/expenseInterface';
 import {DatetimeService} from '../datetime/datetime.service';
-import {DataService} from '../data/data.service';
 
 
 @Injectable({
@@ -10,12 +9,33 @@ import {DataService} from '../data/data.service';
 })
 export class StorageService {
 
-    constructor(
-        private dataService: DataService
-    ) {}
+    constructor(private dateTimeService: DatetimeService) {
+    }
 
-    async saveToLocalStorage(key: string, value: any): Promise<void> {
-        return await Plugins.Storage.set({
+    async saveExpenseToLocal(expense: ExpenseInterface): Promise<void> {
+        const key = this.dateTimeService.getDateTimeISO();
+        let todaysExpenses: ExpenseInterface[] = [];
+        this.getFromLocalStorage(key).then((expenses: ExpenseInterface[]) => {
+            if (expenses == null) {
+                todaysExpenses.push(expense);
+            } else {
+                todaysExpenses = expenses;
+                todaysExpenses.push(expense);
+            }
+        }).then(() => {
+            this.saveToLocalStorage(key, todaysExpenses);
+        }).catch((err) => console.log(err));
+    }
+
+    async getExpensesFromLocal(date?: Date): Promise<ExpenseInterface[]> {
+        const key = date ? this.dateTimeService.getDateTimeISO(date) : this.dateTimeService.getDateTimeISO();
+        return await this.getFromLocalStorage(key).then((expenses: ExpenseInterface[]) => {
+            return expenses;
+        });
+    }
+
+    async saveToLocalStorage(key: string, value: ExpenseInterface[]): Promise<void> {
+        await Plugins.Storage.set({
             key,
             value: JSON.stringify(value)
         });
@@ -31,10 +51,7 @@ export class StorageService {
         return await Plugins.Storage.remove({key});
     }
 
-    async clearLocalStorage(isReset?: boolean): Promise<void> {
-        if (isReset) {
-            this.dataService.setExpenses([]);
-        }
+    async clearLocalStorage(): Promise<void> {
         return await Plugins.Storage.clear();
     }
 }
