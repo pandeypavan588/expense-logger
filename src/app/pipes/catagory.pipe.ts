@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ExpenseInterface } from '../interfaces/expenseInterface';
+import { ExpenseInterface } from '../interface/expenseInterface';
 
 @Pipe({
   name: 'catagory'

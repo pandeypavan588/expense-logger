@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Plugins} from '@capacitor/core';
-import {ExpenseInterface} from '../../interfaces/expenseInterface';
+import {ExpenseInterface} from '../../interface/expenseInterface';
 import {DatetimeService} from '../datetime/datetime.service';
 import {DataService} from "../data/data.service";
 

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ExpenseInterface} from '../../interfaces/expenseInterface';
+
 import {DatetimeService} from '../datetime/datetime.service';
 import {StorageService} from './storage.service';
 import {DataService} from '../data/data.service';

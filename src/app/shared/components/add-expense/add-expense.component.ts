@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActionService } from "../../../services/action/action.service";
-import { ExpenseInterface } from "../../../interfaces/expenseInterface";
+import { ExpenseInterface } from "../../../interface/expenseInterface";
 import { DatetimeService } from "../../../services/datetime/datetime.service";
 import { ExpenseTypes } from 'src/app/constants/constants';
 
