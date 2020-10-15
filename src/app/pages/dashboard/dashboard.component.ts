@@ -6,6 +6,7 @@ import {ExpenseInterface} from '../../interfaces/expenseInterface';
 import {SubscriptionLike} from 'rxjs';
 import {ActionService} from '../../services/action/action.service';
 import {DatetimeService} from "../../services/datetime/datetime.service";
+import { ExpenseTypes } from 'src/app/constants/constants';
 
 @Component({
 	selector: 'app-dashboard',
@@ -18,7 +19,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	subscription: SubscriptionLike;
 	installDate: Date;
 	selectedDate: Date;
+	todayDate: Date;
 	dateSubscription: SubscriptionLike;
+	expenseTypes: any;
+	selectedType: string;
 
 	constructor(
 		private modalController: ModalController,
@@ -28,6 +32,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	) {
 		this.actionsService.getTodayExpensesFromLocal().then((expenses => this.expenses = expenses));
 		this.installDate = this.datetimeService.installDate;
+		this.todayDate = this.datetimeService.getCurrentDateTime();
+		this.expenseTypes = ExpenseTypes;
+		this.selectedType = ExpenseTypes.All.toString();
 	}
 
 	ngOnInit() {
@@ -83,5 +90,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		this.datetimeService.setSelectedDate(this.datetimeService.getCurrentDateTime()).then(() => {
 			this.actionsService.emitExpensesByDateFromLocal(this.selectedDate);
 		})
+	}
+
+	changeSelectedValue(s: string): void {
+		this.selectedType = s;
 	}
 }

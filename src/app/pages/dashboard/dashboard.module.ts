@@ -5,11 +5,12 @@ import { DashboardComponent } from './dashboard.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CatagoryPipe } from 'src/app/pipes/catagory.pipe';
 
 
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, CatagoryPipe],
   imports: [
     CommonModule,
     RouterModule.forChild([{path: '',component: DashboardComponent}]),

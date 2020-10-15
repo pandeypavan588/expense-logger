@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActionService } from "../../../services/action/action.service";
 import { ExpenseInterface } from "../../../interfaces/expenseInterface";
 import { DatetimeService } from "../../../services/datetime/datetime.service";
+import { ExpenseTypes } from 'src/app/constants/constants';
 
 @Component({
   selector: "app-add-expense",
@@ -12,6 +13,7 @@ import { DatetimeService } from "../../../services/datetime/datetime.service";
 })
 export class AddExpenseComponent implements OnInit {
   expenseForm: ExpenseInterface;
+  expenseTypes: any;
 
   addExpenseForm = new FormGroup({
     amount: new FormControl("", Validators.required),
@@ -23,7 +25,9 @@ export class AddExpenseComponent implements OnInit {
     private modalController: ModalController,
     private actionService: ActionService,
     private dateTimeService: DatetimeService
-  ) {}
+  ) {
+    this.expenseTypes = ExpenseTypes;
+  }
 
   ngOnInit() {}
 

@@ -30,7 +30,7 @@ export class AppComponent {
     return await this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       // let status bar overlay webview
-      this.statusBar.overlaysWebView(true);
+     // this.statusBar.overlaysWebView(true);
 
       // set status bar to white
       this.statusBar.backgroundColorByHexString("#ffffff");
