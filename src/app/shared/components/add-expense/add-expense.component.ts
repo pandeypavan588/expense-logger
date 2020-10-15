@@ -32,7 +32,8 @@ export class AddExpenseComponent implements OnInit {
   ngOnInit() {}
 
   initCreateExpense(): void {
-    const expense = this.addExpenseForm.value;
+    const expense: ExpenseInterface = this.addExpenseForm.value;
+	expense.amount = Number(expense.amount.toFixed(2));
     this.dateTimeService
       .getSelectedDate()
       .then((date: Date) => {
