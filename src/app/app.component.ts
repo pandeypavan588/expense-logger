@@ -1,9 +1,7 @@
 import { Component } from "@angular/core";
-
 import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
-import { DataService } from "./services/data/data.service";
 import { StorageService } from "./services/storage/storage.service";
 import { StorageKeys } from "./constants/constants";
 import { DatetimeService } from "./services/datetime/datetime.service";

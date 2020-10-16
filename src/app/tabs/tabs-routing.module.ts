@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountModule } from '../pages/account/account.module';
-import { ActivityModule } from '../pages/activity/activity.module';
-import { BudgetModule } from '../pages/budget/budget.module';
-import { DashboardModule } from '../pages/dashboard/dashboard.module';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -31,14 +27,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/dashboard',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/dashboard',
+    redirectTo: 'tabs',
     pathMatch: 'full'
   }
 ];
