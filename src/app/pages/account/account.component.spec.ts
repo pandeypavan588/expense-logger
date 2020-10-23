@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { AccountComponent } from './account.component';
 
-describe('AccountComponent', () => {
+describe('SettingsComponent', () => {
   let component: AccountComponent;
   let fixture: ComponentFixture<AccountComponent>;
 

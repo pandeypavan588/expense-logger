@@ -17,16 +17,20 @@
                                     <ion-input placeholder="Email" formControlName="email"></ion-input>
                                 </ion-item>
                                 <ion-item lines="full">
-                                    <ion-input placeholder="Password" formControlName="password" [type]="showPassword ? 'text': 'password'"></ion-input>
-                                    <ion-icon [name]="showPassword ? 'eye-off': 'eye'" size="large" (click)="togglePasswordFieldType()"></ion-icon>
+                                    <ion-input placeholder="Password" formControlName="password"
+                                               [type]="showPassword ? 'text': 'password'"></ion-input>
+                                    <ion-icon [name]="showPassword ? 'eye-off': 'eye'" size="large"
+                                              (click)="togglePasswordFieldType()"></ion-icon>
                                 </ion-item>
                                 <br>
                                 <ion-button expand="block" type="submit" [disabled]="!loginForm.valid">Login
                                 </ion-button>
                                 <br/>
-                                <ion-button fill="outline" size="small" [routerLink]="['/auth/forgot-password']" color="warning">Forgot Password
+                                <ion-button fill="outline" size="small" [routerLink]="['/auth/forgot-password']"
+                                            color="warning">Forgot Password
                                 </ion-button>
-                                <ion-button fill="outline" size="small" [routerLink]="['/auth/register']" color="success">
+                                <ion-button fill="outline" size="small" [routerLink]="['/auth/register']"
+                                            color="success">
                                     Register
                                 </ion-button>
                             </ion-item-group>

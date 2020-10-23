@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "expense-logger-a5df9": {
+      "hosting": {
+        "app": [
+          "expense-logger-a5df9"
+        ]
+      }
+    }
+  }
+}

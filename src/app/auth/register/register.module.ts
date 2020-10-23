@@ -1,20 +1,24 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { RegisterRoutingModule } from './register-routing.module';
-import { IonicModule } from '@ionic/angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './register.component';
+import {RegisterRoutingModule} from './register-routing.module';
+import {RegisterComponent} from './register.component';
+import {IonicModule} from '@ionic/angular';
+import {AppFormsModule} from '../../core/modules/app-forms.module';
+import {AuthService} from '../services/auth/auth.service';
 
 
 @NgModule({
-  declarations: [RegisterComponent],
-  imports: [
-    CommonModule,
-    RegisterRoutingModule,
-    IonicModule,
-    ReactiveFormsModule,
-    FormsModule
-  ]
+    declarations: [RegisterComponent],
+    imports: [
+        CommonModule,
+        IonicModule,
+        RegisterRoutingModule,
+        AppFormsModule,
+    ],
+    providers: [
+        AuthService
+    ]
 })
-export class RegisterModule { }
+export class RegisterModule {
+}

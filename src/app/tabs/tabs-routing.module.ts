@@ -4,26 +4,48 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
         path: 'dashboard',
-        loadChildren: () => import('../pages/dashboard/dashboard.module').then(m => m.DashboardModule)
-        
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+          }
+        ]
       },
       {
-        path: 'activity',
-        loadChildren: () => import('../pages/activity/activity.module').then(m => m.ActivityModule)
-        
+        path: 'settings',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/account/account.module').then(m => m.AccountModule)
+          }
+        ]
       },
       {
         path: 'budget',
-        loadChildren: () => import('../pages/budget/budget.module').then(m => m.BudgetModule)
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/budget/budget.module').then(m => m.BudgetModule)
+          }
+        ]
       },
-      {
-        path: 'account',
-        loadChildren: () => import('../pages/account/account.module').then(m => m.AccountModule)
+        {
+        path: 'activity',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/activity/activity.module').then(m => m.ActivityModule)
+          }
+        ]
       },
       {
         path: '',

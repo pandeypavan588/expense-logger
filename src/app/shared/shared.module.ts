@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AddExpenseComponent } from './components/add-expense/add-expense.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AddExpenseComponent} from './components/add-expense/add-expense.component';
+import {IonicModule} from '@ionic/angular';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [AddExpenseComponent],
+    declarations: [AddExpenseComponent],
     imports: [
         CommonModule,
         IonicModule,
@@ -17,4 +15,5 @@ import { IonicModule } from '@ionic/angular';
         AddExpenseComponent
     ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

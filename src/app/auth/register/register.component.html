@@ -22,11 +22,14 @@
                                     <ion-input placeholder="Email" formControlName="email" type="email" inputmode="email"></ion-input>
                                 </ion-item>
                                 <ion-item lines="full">
-                                    <ion-input placeholder="Password" formControlName="password" [type]="showPassword ? 'text': 'password'"></ion-input>
-                                    <ion-icon [name]="showPassword ? 'eye-off': 'eye'" size="large" (click)="togglePasswordFieldType()"></ion-icon>
+                                      <ion-input placeholder="Password" formControlName="password"
+                                               [type]="showPassword ? 'text': 'password'"></ion-input>
+                                    <ion-icon [name]="showPassword ? 'eye-off': 'eye'" size="large"
+                                              (click)="togglePasswordFieldType()"></ion-icon>
                                 </ion-item>
                                 <ion-item lines="full">
-                                    <ion-input placeholder="Confirm Password" formControlName="passwordConfirm" [type]="showPassword ? 'text': 'password'"></ion-input>
+                                     <ion-input placeholder="Confirm Password" formControlName="passwordConfirm"
+                                               [type]="showPassword ? 'text': 'password'"></ion-input>
                                 </ion-item>
                                 <ion-button expand="block" type="submit" [disabled]="!registerForm.valid"> Register
                                 </ion-button>

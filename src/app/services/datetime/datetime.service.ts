@@ -1,54 +1,52 @@
 import {Injectable} from '@angular/core';
-import * as moment from 'moment';
-import { BehaviorSubject } from 'rxjs';
+import * as moment from 'moment/moment';
+import {BehaviorSubject, Observable, of} from 'rxjs';
+import {fromPromise} from 'rxjs/internal-compatibility';
 
 @Injectable({
-	providedIn: 'root'
+    providedIn: 'root'
 })
 export class DatetimeService {
 
 
-	private _installDate: Date;
-	private _selectedDate: BehaviorSubject<Date>;
+    private readonly selectedDateBehaviorSubject: BehaviorSubject<Date>;
 
-	constructor() {
-		this._selectedDate = new BehaviorSubject<Date>(this.getCurrentDateTime());
-	}
+    constructor() {
+        this.selectedDateBehaviorSubject = new BehaviorSubject<Date>(moment().toDate());
+    }
 
-	async setSelectedDate(date: Date | string): Promise<void> {
-		return this._selectedDate.next(typeof date === "string" ? this.createDateFromString(date) : date);
-	}
+    private _installDate: Date;
 
-	async getSelectedDate(): Promise<Date> {
-		return this._selectedDate.getValue();
-	}
+    get installDate(): Date {
+        return this._installDate;
+    }
 
-	getSelectedDateSubscription(): BehaviorSubject<Date> {
-		return this._selectedDate;
-	}
+    set installDate(value: Date) {
+        this._installDate = value;
+    }
 
-	getCurrentDateTime(): Date{
-		return moment().toDate();
-	}
+    setSelectedDate(date: Date | string): Observable<void> {
+        return of(this.selectedDateBehaviorSubject.next(typeof date === 'string' ? this.createDateFromString(date) : date));
+    }
 
-	createDateFromString(date: string): Date {
-		return moment(date).toDate();
-	}
-	getDateTimeISOWithFormat(date?: Date): string {
-		return date ? moment(date).format('L') : moment().format('L');
-	}
+    async getSelectedDate(): Promise<Date> {
+        return this.selectedDateBehaviorSubject.getValue();
+    }
 
+    getSelectedDateSubscription(): BehaviorSubject<Date> {
+        return this.selectedDateBehaviorSubject;
+    }
 
-	get installDate(): Date {
-		return this._installDate;
-	}
+    getCurrentDateTime(): Date {
+        return moment().toDate();
+    }
 
-	set installDate(value: Date) {
-		this._installDate = value;
-	}
+    createDateFromString(date: string): Date {
+        return moment(date).toDate();
+    }
 
-	
-
-	
+    getDateTimeISOWithFormat(date?: Date): string {
+        return date ? moment(date).format('L') : moment().format('L');
+    }
 
 }

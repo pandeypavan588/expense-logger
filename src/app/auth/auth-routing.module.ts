@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AuthComponent} from './auth.component';
-
+import {elementEventFullName} from '@angular/compiler/src/view_compiler/view_compiler';
+import {AuthGuard} from './guards/auth/auth.guard';
 
 
 const routes: Routes = [
@@ -11,7 +12,7 @@ const routes: Routes = [
         children: [
             {
                 path: 'login',
-                loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+                loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
             },
             {
                 path: 'register',
@@ -23,7 +24,7 @@ const routes: Routes = [
             },
             {
                 path: '',
-                redirectTo: 'register',
+                redirectTo: 'login',
                 pathMatch: 'full'
             }
         ]
